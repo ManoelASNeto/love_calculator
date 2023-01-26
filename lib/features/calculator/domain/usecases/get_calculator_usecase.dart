@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:love_calculator/core/erros/failure.dart';
-import 'package:love_calculator/features/calculator/domain/entities/combination_entity.dart';
-import 'package:love_calculator/features/calculator/domain/repositories/i_calculator_repository.dart';
+
+import '../../../../core/erros/failure.dart';
+import '../entities/combination_entity.dart';
+import '../repositories/i_calculator_repository.dart';
 
 class GetCalculatorUseCase {
   final ICalculatorRepository iCalculatorRepository;

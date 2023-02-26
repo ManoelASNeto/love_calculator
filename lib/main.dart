@@ -14,14 +14,17 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _router = AppRoutes();
   @override
   Widget build(BuildContext context) {
-    final _router = AppRoutes();
-
     return MaterialApp(
       onGenerateRoute: _router.generateRoutes,
       initialRoute: Routes.homePage,

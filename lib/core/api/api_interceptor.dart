@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
 
 abstract class IHttpClient {
-  Future<Response> get(String? endPoint, {Map<String, String>? headers});
+  Future<Response> get(String? endPoint, {Map<String, dynamic>? headers});
 }
 
 class HttpClient extends IHttpClient implements InterceptorContract {
@@ -15,13 +15,13 @@ class HttpClient extends IHttpClient implements InterceptorContract {
   }
 
   @override
-  Future<Response> get(String? endPoint, {Map<String, String>? headers}) async {
+  Future<Response> get(String? endPoint,
+      {Map<String, dynamic>? headers}) async {
     final response = await _client.get(
       endPoint!.toUri(),
       headers: {
         'X-RapidAPI-Key': 'bcd3a735e5msh7b1052ba9d87fe8p16f375jsn83225af8e734',
         'X-RapidAPI-Host': 'love-calculator.p.rapidapi.com',
-        'Content-Type': 'application/json',
       },
     );
     return response;

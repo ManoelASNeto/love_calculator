@@ -25,10 +25,10 @@ class CombinationModel extends Equatable {
 
   factory CombinationModel.fromJson(Map<String, dynamic> json) =>
       CombinationModel(
-        fname: json['PrimeiroNome'],
-        sname: json['SegundoNome'],
-        percentage: json['Porcentagem'],
-        result: json['Resultado'],
+        fname: json['fname'],
+        sname: json['sname'],
+        percentage: json['percentage'],
+        result: json['result'],
       );
 
   factory CombinationModel.toEntity(CombinationEntity entity) =>

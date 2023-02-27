@@ -1,9 +1,9 @@
-import 'package:love_calculator/core/erros/exception.dart';
-import 'package:love_calculator/core/erros/failure.dart';
+import '../../../../core/erros/exception.dart';
+import '../../../../core/erros/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:love_calculator/features/calculator/data/datasources/calculator_remote_data_source.dart';
-import 'package:love_calculator/features/calculator/domain/entities/combination_entity.dart';
-import 'package:love_calculator/features/calculator/domain/repositories/i_calculator_repository.dart';
+import '../datasources/calculator_remote_data_source.dart';
+import '../../domain/entities/combination_entity.dart';
+import '../../domain/repositories/i_calculator_repository.dart';
 
 class CalculatorRepository implements ICalculatorRepository {
   final ICalculatorRemoteDataSource iCalculatorRemoteDataSource;

@@ -1,12 +1,11 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import '../../../../core/ultis/helpers/size_extensions.dart';
-import '../bloc/calculator_bloc.dart';
 
+import '../../../../core/ultis/helpers/size_extensions.dart';
 import '../../../../injection_container.dart';
+import '../bloc/calculator_bloc.dart';
 import '../widgets/text_field_custom.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,8 +22,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    firstController.clear();
-    secondController.clear();
+    firstController.dispose();
+    secondController.dispose();
     super.dispose();
   }
 
@@ -57,10 +56,11 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     style: GoogleFonts.caveat(
-                        textStyle: const TextStyle(
-                      fontSize: 40,
-                      color: Colors.red,
-                    )),
+                      textStyle: const TextStyle(
+                        fontSize: 40,
+                        color: Colors.red,
+                      ),
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -99,14 +99,20 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(
           height: 50,
         ),
-        const TextFieldCustom(
+        TextFieldCustom(
           text: 'Primeiro Nome',
+          icon: MdiIcons.genderMale,
+          controller: firstController,
+          color: Colors.blue.shade200,
         ),
         const SizedBox(
           height: 50,
         ),
-        const TextFieldCustom(
+        TextFieldCustom(
           text: 'Segundo Nome',
+          icon: MdiIcons.genderFemale,
+          controller: secondController,
+          color: Colors.pink.shade200,
         ),
         const SizedBox(
           height: 30,
@@ -148,20 +154,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _readyCombination(CalculatorState state) {
+    final loveResult = state.combinationEntity;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(
           height: 50,
         ),
-        const TextFieldCustom(
+        TextFieldCustom(
           text: 'Primeiro Nome',
+          icon: MdiIcons.genderMale,
+          controller: firstController,
+          color: Colors.blue.shade200,
         ),
         const SizedBox(
           height: 50,
         ),
-        const TextFieldCustom(
+        TextFieldCustom(
           text: 'Segundo Nome',
+          icon: MdiIcons.genderFemale,
+          controller: secondController,
+          color: Colors.pink.shade200,
         ),
         const SizedBox(
           height: 30,
@@ -198,17 +211,28 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        SizedBox(
-          height: 75,
-          width: 75,
-          child: Column(
-            children: [
-              Text(state.combinationEntity!.fname ?? ''),
-              Text(state.combinationEntity!.sname ?? ''),
-              Text(state.combinationEntity!.percentage ?? ''),
-              Text(state.combinationEntity!.result ?? ''),
-            ],
-          ),
+        const SizedBox(
+          height: 35,
+        ),
+        Column(
+          children: [
+            const Text(
+              'O Resultado da Combinação é:',
+              style: TextStyle(fontSize: 20, color: Colors.red),
+            ),
+            Text(
+              '${loveResult!.fname} e ${loveResult.sname}',
+              style: const TextStyle(fontSize: 20, color: Colors.redAccent),
+            ),
+            Text(
+              '${loveResult.percentage}%',
+              style: const TextStyle(fontSize: 30, color: Colors.red),
+            ),
+            Text(
+              state.combinationEntity!.result ?? '',
+              style: const TextStyle(fontSize: 20, color: Colors.red),
+            ),
+          ],
         )
       ],
     );

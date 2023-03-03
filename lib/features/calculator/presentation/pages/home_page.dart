@@ -226,15 +226,30 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               '${loveResult.percentage}%',
-              style: const TextStyle(fontSize: 30, color: Colors.red),
+              style: const TextStyle(fontSize: 40, color: Colors.red),
             ),
             Text(
-              state.combinationEntity!.result ?? '',
+              _resultCombination(loveResult.result),
               style: const TextStyle(fontSize: 20, color: Colors.red),
             ),
           ],
         )
       ],
     );
+  }
+
+  String _resultCombination(String? result) {
+    switch (result) {
+      case 'Congratulations! Good choice':
+        return 'Parabéns! Boa combinação';
+      case 'Can choose someone better':
+        return 'Pode escolher alguém melhor';
+      case 'All the best!':
+        return 'Uma boa escolha!';
+      case 'May be better next time.':
+        return 'Mais sorte na proxima!';
+      default:
+        return 'Sem dados para combinar';
+    }
   }
 }

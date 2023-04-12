@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:love_calculator/features/calculator/presentation/pages/combination_page.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../core/ultis/helpers/size_extensions.dart';
@@ -32,25 +33,30 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Container(
             height: context.screenHeight,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                  'https://img.freepik.com/free-vector/little-red-heart-background_53876-98914.jpg?w=360&t=st=1677427188~exp=1677427788~hmac=92a2d505c12dc633bc8f6f82890ecbe0763cd8a5cd4150b1dee4545e254eb234',
+                image: AssetImage(
+                  'assets/icon/logo_app.png',
                 ),
-                fit: BoxFit.cover,
+                opacity: 0.3,
+                alignment: Alignment.center,
               ),
             ),
             child: Column(
               children: [
+                const SizedBox(
+                  height: 30,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text.rich(
                     const TextSpan(
                       children: [
                         TextSpan(
-                          text: 'Calculadora\n do\n ',
+                          text: 'Calculadora do ',
                         ),
                         TextSpan(text: 'AMOR'),
                       ],
@@ -62,6 +68,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     textAlign: TextAlign.center,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Text(
+                    'Coloque o seu nome e de uma segunda pessoa para saber qual a porcentagem entre vocês!',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.redAccent,
+                    ),
                   ),
                 ),
                 BlocBuilder<CalculatorBloc, CalculatorState>(
@@ -84,7 +100,7 @@ class _HomePageState extends State<HomePage> {
       case CalculatorStatus.loading:
         return _loadingCombination(state);
       case CalculatorStatus.ready:
-        return _readyCombination(state);
+        return const CombinationPage();
       default:
         return const Center(
           child: Text('Carregando'),
@@ -97,28 +113,26 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(
-          height: 50,
+          height: 150,
         ),
         TextFieldCustom(
           text: 'Primeiro Nome',
-          icon: MdiIcons.genderMale,
           controller: firstController,
-          color: Colors.blue.shade200,
+          color: Colors.transparent,
         ),
         const SizedBox(
           height: 50,
         ),
         TextFieldCustom(
           text: 'Segundo Nome',
-          icon: MdiIcons.genderFemale,
           controller: secondController,
-          color: Colors.pink.shade200,
+          color: Colors.transparent,
         ),
         const SizedBox(
           height: 30,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
           child: SizedBox(
             height: 50,
             child: ElevatedButton(
@@ -163,7 +177,6 @@ class _HomePageState extends State<HomePage> {
         ),
         TextFieldCustom(
           text: 'Primeiro Nome',
-          icon: MdiIcons.genderMale,
           controller: firstController,
           color: Colors.blue.shade200,
         ),
@@ -172,7 +185,6 @@ class _HomePageState extends State<HomePage> {
         ),
         TextFieldCustom(
           text: 'Segundo Nome',
-          icon: MdiIcons.genderFemale,
           controller: secondController,
           color: Colors.pink.shade200,
         ),
@@ -242,7 +254,7 @@ class _HomePageState extends State<HomePage> {
     switch (result) {
       case 'Congratulations! Good choice':
         return 'Parabéns! Boa combinação';
-      case 'Can choose someone better':
+      case 'Can choose someone better.':
         return 'Pode escolher alguém melhor';
       case 'All the best!':
         return 'Uma boa escolha!';

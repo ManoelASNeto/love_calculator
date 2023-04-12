@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TextFieldCustom extends StatelessWidget {
   final String text;
-  final IconData? icon;
+
   final TextEditingController? controller;
   final Color color;
   const TextFieldCustom({
@@ -10,7 +10,6 @@ class TextFieldCustom extends StatelessWidget {
     required this.text,
     required this.controller,
     required this.color,
-    required this.icon,
   }) : super(key: key);
 
   @override
@@ -24,8 +23,7 @@ class TextFieldCustom extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           labelText: text,
-          labelStyle: const TextStyle(color: Colors.white),
-          suffixIcon: Icon(icon),
+          labelStyle: const TextStyle(color: Colors.black54),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
           ),

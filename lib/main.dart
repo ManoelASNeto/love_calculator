@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: _router.generateRoutes,
-      initialRoute: Routes.homePage,
+      initialRoute: Routes.splashPage,
       navigatorObservers: [HeroController()],
     );
   }

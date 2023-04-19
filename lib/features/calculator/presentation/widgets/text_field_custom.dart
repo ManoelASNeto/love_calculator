@@ -5,20 +5,21 @@ class TextFieldCustom extends StatelessWidget {
 
   final TextEditingController? controller;
   final Color color;
+
   const TextFieldCustom({
-    Key? key,
+    super.key,
     required this.text,
     required this.controller,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: TextField(
-        style: TextStyle(
-          color: Colors.grey.shade200,
+      child: TextFormField(
+        style: const TextStyle(
+          color: Colors.black,
         ),
         controller: controller,
         decoration: InputDecoration(
